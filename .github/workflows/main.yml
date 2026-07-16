@@ -1,7 +1,6 @@
 name: pushing the docker images
 on:
   workflow_dispatch:
-    branches: [ "master" ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +15,6 @@ jobs:
       - name: BUILDING THE IMAGES
         run: docker build -t ${{ vars.DOCKER_IMAGE }} .
       - name: tag the image 
-        run: docker tag ${{ vars.DOCKER_IMAGE }} ${{ vars.USER.NAME }}/${{ vars.DOCKER.IMAGE }}:v1
+        run: docker tag ${{ vars.DOCKER_IMAGE }} ${{ vars.USER_NAME }}/${{ vars.DOCKER_IMAGE }}:v1
       - name: pushing the images to docker registry
         run: docker push ${{ vars.USER_NAME }}/${{ vars.DOCKER_IMAGE }}:v1
